@@ -1,0 +1,358 @@
+<html>
+
+<head>
+    <style>
+        body {
+            align-content: center;
+        }
+
+        .logo {
+            margin-top: 18px;
+            width: 50px;
+            height: 50px;
+            box-shadow: 20px;
+        }
+
+        .top_cont {
+            display: inline-block;
+            height: 100px;
+            width: 100%;
+            background-color: aliceblue;
+        }
+
+        .parent {
+            border-radius: 24px;
+            align-content: center;
+            align-items: center;
+            align-self: center;
+            background-color: bisque;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            width: 44%;
+            display: inline-block;
+            padding: 10px;
+            height: 150px;
+            margin-left: 28%;
+        }
+
+        .sec_cont {
+            height: 60px;
+            width: 100%;
+            background-color: aliceblue;
+        }
+
+        .nav ul {
+            list-style-type: none;
+            background-color: aliceblue;
+            padding: 0;
+            margin: 0;
+            align-items: end;
+            overflow: hidden;
+        }
+
+        .bt {
+            border-style: none;
+            padding: 10 px 20px;
+            background-color: aliceblue;
+            color: black;
+            border-radius: 25px;
+            font-size: 22px;
+        }
+
+        .bt:hover {
+            transform: scale(1.1);
+            transition-delay: 0.01s;
+            box-shadow: 25px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav a {
+            color: black;
+            text-decoration: none;
+            text-align: center;
+            padding: 15px;
+            display: block;
+        }
+
+        .nav a:hover {
+            color: blue;
+            transition: 0.02s;
+            text-shadow: 6px;
+        }
+
+        .nav li {
+            float: left;
+        }
+
+        img {
+            width: 100%;
+            height: 40px;
+            border: 10px solid transparent;
+            border-color: bisque;
+            border-radius: 29px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            margin-top: 15px;
+            font-size: 16px;
+            background-color: #3498db;
+            color: azure;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.1s ease;
+            border-radius: 24px;
+        }
+
+        .heading {
+            font-family: "Georgia", serif;
+            text-align: center;
+            color: black;
+            font-size: 70px;
+            padding: 15px;
+            text-shadow: 25px;
+            margin-bottom: 80px;
+        }
+
+        .button:hover {
+            transform: scale(1.2);
+
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <div class="top_cont">
+            <img class="logo" src="palletelogo.png" alt="logo" srcset="">
+            <h3 class="name"> Pallete</h3>
+        </div>
+    </section>
+    <section style="display:flex;" class="sec_cont">
+        <div id="navv">
+            <nav class="nav">
+                <ul>
+                    <li><a href="pallete_home.html"><button class="bt">Home</button></a></li>
+                    <li><a href="#"><button class="bt">Events</button></a></li>
+                    <li><a href="about.html"><button class="bt">About</button></a></li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+    <div class="heading">
+        EVENTS
+    </div>
+</body>
+
+</html>
+<?php
+include "connection.php";
+$sql_result = mysqli_query($conn, "select * from pallete_notice order by added_time desc;");
+if ($sql_result) {
+    while ($dbrow = mysqli_fetch_assoc($sql_result)) {
+        echo "    
+    <div class='parent'>
+    <div><h3>$dbrow[ename]</h3></div>
+    <div>$dbrow[edesc]</div>            
+    <div>    
+    <a href='#'>
+    <button class='button'>Register</button>    
+    </a>
+    </div>
+    </div>";
+    }
+} else {
+    echo "<h1 style='text-align:center'>No notices are avaialable</h1>";
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        a.social {
+            background-color: #fff;
+            width: 70px;
+            height: 70px;
+            border-radius: 100%;
+            margin: 0 10px;
+            border: #fff solid 2px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        a.social::before {
+            content: '';
+            background-color: #f0f;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 100%;
+            transition: 0.5s all ease-in-out;
+        }
+
+        a.social:hover::before {
+            top: 0;
+        }
+
+        a.social.facebook::before {
+            background-color: #3a5796;
+        }
+
+        a.social.twitter::before {
+            background-color: #1c9ceb;
+        }
+
+        a.social.linkedin::before {
+            background-color: #0371ae;
+        }
+
+        a.social.instagram::before {
+            background-color: #d12c7a;
+        }
+
+        a.social.whatsapp::before {
+            background-color: greenyellow;
+        }
+
+        a.social svg {
+            width: 30px;
+            height: 30px;
+            position: relative;
+            z-index: 1;
+            transition: 0.5s all ease-in-out;
+        }
+
+        a.social:hover svg {
+            transform: rotate(360deg);
+        }
+
+        a.social svg path {
+            fill: #383838;
+            transition: 0.5s all ease-in-out;
+        }
+
+        a.social:hover svg path {
+            fill: #fff;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #2b2727;
+        }
+
+        section {
+            width: 100%;
+            height: fit-content;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .bot_sec {
+            height: 100px;
+            width: 100%;
+            background-color: white;
+        }
+
+        #container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="bot_sec">
+    </section>
+    <section style="background-color:azure" >
+        <div style="text-align: center;margin-top: 50px;margin-bottom: 20px;font-size: 70px;font-weight: 300;">
+            Image Corner
+        </div>
+        <div id="container">
+            <div style="height: fit-content;width:30%;margin: 150px 150px;overflow: hidden;" >
+                <img style="height:650px;width:100%;margin: 10px;border: 2px solid;border-radius: 8px;overflow: hidden;" src="photo4.jpg" alt="Event">
+                <p
+                    style="text-align: center;font-size: 20px;font-weight: 200;padding: 8px;width:100%;">
+                    Introductory workshop based on acrylic painting for engineering students
+                </p>
+            </div>
+            <div style="height:fit-content;width:30%;margin: 150px 150px;overflow: hidden;">
+                <img style="height:650px;width:100%;margin: 10px;border: 2px solid;border-radius: 8px;overflow: hidden;" src="photo3.jpg" alt="Event">
+                <p
+                    style="text-align: center;font-size: 20px;font-weight: 200;padding: 8px;width:100%;">
+                    "We are like butterflies who flutter for a day and think it is forever" -Carl Sagan
+                </p>
+            </div>
+            <div style="height:fit-content;width:30%;overflow: hidden;">
+                <img style="height:650px;width:100%;margin: 10px;border: 2px solid;border-radius: 8px;overflow: hidden;" src="photo2.jpg" alt="Event">
+                <p
+                    style="text-align: center;font-size: 20px;font-weight: 200;padding: 8px;width:100%;">
+                    "The canvas elegantly weaves together the beauty of a Lady and the classical melodies—a masterpiece that speaks volumes".
+                </p>
+            </div>
+
+
+    </section>
+    <footer>
+
+        <div class="social-icons">
+            <section style="display:flex;" >
+                <a href="#" class="social facebook">
+                    <svg viewBox="0 0 126.22 246">
+                        <path
+                            d="M173.6,27h35.92V70.19h-29.7c-15,2.39-14,19.79-14,19.79v29.33h47.27l-7.05,47.52H166.33V273H119.19V166.09H86.89V119.31h32.3V87.74A68.5,68.5,0,0,1,127,55.49c5.27-9.87,14-20.18,28.41-25.47A53,53,0,0,1,173.6,27Z"
+                            transform="translate(-86.89 -27)" />
+                    </svg>
+                </a>
+                <a href="#" class="social twitter">
+                    <svg viewBox="0 0 245.97 198.8">
+                        <path
+                            d="M44.28,59.23S89.07,113,147.62,111C140.12,86,172.14,21.7,234,65.49c0,0,24.77-5.26,32.28-12.51,0,0-3.5,14.76-20.77,27.52,0,0-1.25,2.5,27.53-6.76,0,0-12.27,16.77-25.28,26,0,0,7.18,101-91.91,141,0,0-60.72,26.69-128.79-14,0,0,40.71,6.67,74.4-20.69,0,0-38.36-3.67-46.37-35.36,0,0,13.35,3.67,22-1,0,0-36-4-39.7-49.71,0,0,17,7.33,22.35,6.33C59.71,126.37,23.85,104.52,44.28,59.23Z"
+                            transform="translate(-27.01 -50.6)" />
+                    </svg>
+                </a>
+                <a href="#" class="social linkedin">
+                    <svg viewBox="0 0 244.65 226.28">
+                        <path
+                            d="M35.73,81.63a24.22,24.22,0,0,1-8-18.5,24.59,24.59,0,0,1,8-18.79q8.06-7.47,20.76-7.48,12.43,0,20.48,7.48a24.59,24.59,0,0,1,8,18.79,24.22,24.22,0,0,1-8,18.5q-8,7.5-20.48,7.49Q43.79,89.12,35.73,81.63ZM80.5,105.51V263.14H32.2V105.51Z"
+                            transform="translate(-27.68 -36.86)" />
+                        <path class="cls-1"
+                            d="M255.8,121.75q16.51,17.94,16.52,49.3v92.09h-48v-85.6q0-15.81-8.19-24.57t-22-8.76q-13.84,0-22,8.76t-8.2,24.57v85.6H115.53V105.51h48.31v20.9a51.15,51.15,0,0,1,19.78-16.53,63,63,0,0,1,28-6.07Q239.27,103.81,255.8,121.75Z"
+                            transform="translate(-27.68 -36.86)" />
+                    </svg>
+                </a>
+                <a href="#" class="social instagram">
+                    <svg viewBox="0 0 246.15 246.15">
+                        <path
+                            d="M201,51.5A47.49,47.49,0,0,1,248.41,99V200.88A47.49,47.49,0,0,1,201,248.32H99a47.49,47.49,0,0,1-47.44-47.44V99A47.49,47.49,0,0,1,99,51.5H201m0-24.66H99A72.11,72.11,0,0,0,26.92,99V200.88A72.12,72.12,0,0,0,99,273H201a72.12,72.12,0,0,0,72.11-72.11V99A72.11,72.11,0,0,0,201,26.84Z"
+                            transform="translate(-26.92 -26.84)" />
+                        <path class="cls-1"
+                            d="M150,124.34a25.57,25.57,0,1,1-25.57,25.57A25.6,25.6,0,0,1,150,124.34m0-24.66a50.24,50.24,0,1,0,50.23,50.23A50.23,50.23,0,0,0,150,99.68Z"
+                            transform="translate(-26.92 -26.84)" fill="#51C85D" />
+                        <circle class="cls-1" cx="189.98" cy="55.33" r="13.81" />
+                    </svg>
+                </a>
+                <a href="" class="social whatsapp">
+                    <svg viewBox="0 0 512 512">
+                        <path
+                            d="M256.063,16.75h-0.125C124.379,16.75,17.397,124.051,17.397,256     c0,52.336,16.819,100.848,45.422,140.232l-29.732,88.873l91.716-29.394c37.725,25.063,82.731,39.538,131.26,39.538     c131.559,0,238.541-107.335,238.541-239.25C494.604,124.083,387.621,16.75,256.063,16.75L256.063,16.75z M256.063,16.75"
+                            fill="#5ACF5F" transform="translate(-26.92 -26.84)" />
+                        <path
+                            d="M394.896,354.596c-5.758,16.304-28.604,29.817-46.824,33.771     c-12.473,2.657-28.754,4.785-83.568-18.006c-70.125-29.127-115.28-100.575-118.795-105.21     c-3.375-4.637-28.336-37.827-28.336-72.165c0-34.331,17.386-51.052,24.398-58.223c5.751-5.897,15.267-8.583,24.394-8.583     c2.954,0,5.606,0.146,7.997,0.267c7.008,0.302,10.524,0.717,15.151,11.813c5.756,13.909,19.77,48.239,21.445,51.771     c1.701,3.53,3.396,8.311,1.012,12.945c-2.24,4.788-4.205,6.91-7.725,10.975c-3.521,4.073-6.865,7.182-10.381,11.544     c-3.219,3.798-6.859,7.867-2.801,14.896c4.055,6.879,18.07,29.812,38.707,48.235c26.641,23.775,48.229,31.372,55.957,34.604     c5.756,2.395,12.615,1.822,16.816-2.663c5.34-5.774,11.938-15.342,18.645-24.759c4.771-6.76,10.795-7.599,17.119-5.208     c6.441,2.244,40.531,19.143,47.541,22.641c7.006,3.529,11.635,5.203,13.334,8.165     C400.652,324.361,400.652,338.271,394.896,354.596L394.896,354.596z M394.896,354.596"
+                            fill="#FCFCFC" />
+                    </svg>
+                </a>
+            </section>
+        </div>
+    </footer>
+</body>
+
+</html>
